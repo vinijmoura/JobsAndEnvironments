@@ -6,7 +6,7 @@ on:
 env:
   AZURE_WEBAPP_NAME: jobsandenvironments
   AZURE_WEBAPP_PACKAGE_PATH: ./published
-  AZURE_WEBAPP_PACKAGE_PATH_DOWNLOAD: /webapp/published
+  AZURE_WEBAPP_PACKAGE_PATH_DOWNLOAD: ./webapp/published
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 3.1.x
   PROJECT_PATH: JobsAndEnvironments
@@ -45,6 +45,6 @@ jobs:
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.JOBSANDENVIRONMENTS_PUBLISH_PROFILE }}
-        package: $GITHUB_WORKSPACE + ${{ env.AZURE_WEBAPP_PACKAGE_PATH_DOWNLOAD }}
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH_DOWNLOAD }}
         slot-name: dev
     
