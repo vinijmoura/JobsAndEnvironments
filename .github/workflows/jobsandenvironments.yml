@@ -34,6 +34,9 @@ jobs:
         path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
   deploydev:
     needs: build
+    environment:
+     name: dev
+     url: https://jobsandenvironments-dev.azurewebsites.net/
     runs-on: ubuntu-latest
     steps:
     - name: Download a Build Artifact
@@ -47,4 +50,21 @@ jobs:
         publish-profile: ${{ secrets.JOBSANDENVIRONMENTS_PUBLISH_PROFILE }}
         package: ${{ github.workspace }}
         slot-name: dev
+  deployprod:
+    needs: deploydev
+    environment:
+     name: prod
+     url: https://jobsandenvironments.azurewebsites.net/
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download a Build Artifact
+      uses: actions/download-artifact@v2.0.7
+      with:
+        name:  webapp
+    - name: Deploy to Azure WebApp
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        publish-profile: ${{ secrets.JOBSANDENVIRONMENTS_PUBLISH_PROFILE }}
+        package: ${{ github.workspace }}
     
