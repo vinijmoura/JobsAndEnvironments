@@ -40,13 +40,11 @@ jobs:
       uses: actions/download-artifact@v2.0.7
       with:
         name:  webapp
-    - name: Lista arquivos
-      run: ls /home/runner/work/JobsAndEnvironments/JobsAndEnvironments
     - name: Deploy to Azure WebApp
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.JOBSANDENVIRONMENTS_PUBLISH_PROFILE }}
-        package: ${{ github.workspace }}/${{ env.AZURE_WEBAPP_PACKAGE_PATH_DOWNLOAD }}
+        package: ${{ github.workspace }}
         slot-name: dev
     
