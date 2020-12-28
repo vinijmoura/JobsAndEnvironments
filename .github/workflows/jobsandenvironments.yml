@@ -4,9 +4,8 @@ on:
     branches:
     - master
 env:
-  AZURE_WEBAPP_NAME: jobsandenvironments-dev
+  AZURE_WEBAPP_NAME: jobsandenvironments
   AZURE_WEBAPP_PACKAGE_PATH: ./published
-  AZURE_WEBAPP_PUBLISH_PROFILE: ${{ secrets.JOBSANDENVIRONMENTS_PUBLISH_PROFILE }}
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 3.1.x
   PROJECT_PATH: JobsAndEnvironments
@@ -31,7 +30,7 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ env.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        publish-profile: ${{ secrets.JOBSANDENVIRONMENTS_PUBLISH_PROFILE }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
         slot-name: dev
     - name: Publish Artifacts
