@@ -41,7 +41,7 @@ jobs:
       with:
         name:  webapp
     - name: Lista arquivos
-      run: ls github.workspace
+      run: ls /home/runner/work/JobsAndEnvironments/JobsAndEnvironments
     - name: Deploy to Azure WebApp
       uses: azure/webapps-deploy@v2
       with:
