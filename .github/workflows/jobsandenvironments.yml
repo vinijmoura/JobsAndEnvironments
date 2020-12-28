@@ -45,6 +45,6 @@ jobs:
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.JOBSANDENVIRONMENTS_PUBLISH_PROFILE }}
-        package: ${{ GITHUB_WORKSPACE }} + ${{ env.AZURE_WEBAPP_PACKAGE_PATH_DOWNLOAD }}
+        package: $GITHUB_WORKSPACE + ${{ env.AZURE_WEBAPP_PACKAGE_PATH_DOWNLOAD }}
         slot-name: dev
     
